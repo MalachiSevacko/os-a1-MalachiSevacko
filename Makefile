@@ -134,6 +134,7 @@ UPROGS=\
 	$U/_echo\
 	$U/_sleep\
 	$U/_find\
+	$U/_xargs\
 	$U/_forktest\
 	$U/_grep\
 	$U/_init\
