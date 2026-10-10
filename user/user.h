@@ -7,6 +7,8 @@ int fork(void);
 int exit(int) __attribute__((noreturn));
 int wait(int *);
 int trace(int mask);
+struct sysinfo;
+int sysinfo(struct sysinfo *);
 int pipe(int *);
 int write(int, const void *, int);
 int read(int, void *, int);

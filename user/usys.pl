@@ -25,6 +25,7 @@ entry("fork");
 entry("exit");
 entry("wait");
 entry("trace");
+entry("sysinfo");
 entry("pipe");
 entry("read");
 entry("write");
