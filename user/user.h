@@ -9,6 +9,8 @@ int wait(int *);
 int trace(int mask);
 struct sysinfo;
 int sysinfo(struct sysinfo *);
+struct uproc;
+int getprocs(struct uproc *, int);
 int pipe(int *);
 int write(int, const void *, int);
 int read(int, void *, int);

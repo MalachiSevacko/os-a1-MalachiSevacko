@@ -26,6 +26,7 @@ entry("exit");
 entry("wait");
 entry("trace");
 entry("sysinfo");
+entry("getprocs");
 entry("pipe");
 entry("read");
 entry("write");

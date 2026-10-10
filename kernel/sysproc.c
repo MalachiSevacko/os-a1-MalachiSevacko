@@ -7,6 +7,7 @@
 #include "proc.h"
 #include "vm.h"
 #include "sysinfo.h"
+#include "uproc.h"
 
 uint64
 sys_exit(void)
@@ -141,4 +142,41 @@ sys_sysinfo(void)
     return -1;
 
   return 0;
+}
+
+uint64
+sys_getprocs(void)
+{
+  uint64 addr;
+  int max;
+  struct uproc *list;
+  int count;
+  int result;
+
+  argaddr(0, &addr);
+  argint(1, &max);
+
+  if(max < 0 || max > NPROC)
+    return -1;
+
+  list = (struct uproc *)kalloc();
+  if(list == 0)
+    return -1;
+
+  count = collectprocs(list, max);
+
+  if(count < 0) {
+    kfree((void *)list);
+    return -1;
+  }
+
+  result = copyout(myproc()->pagetable, myproc()->sz, addr,
+                   (char *)list, count * sizeof(struct uproc));
+
+  kfree((void *)list);
+
+  if(result < 0)
+    return -1;
+
+  return count;
 }
